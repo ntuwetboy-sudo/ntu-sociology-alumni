@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>台大社會學系 系友資料庫</title>
+<title>å°å¤§ç¤¾æå­¸ç³» ç³»åè³æåº«</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -18,36 +18,36 @@
   }
   .form-wrap { max-width: 660px; width: 100%; }
   .form-header { margin-bottom: 1.5rem; }
-  .form-header h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
-  .form-header p { font-size: 13px; color: #888780; }
+  .form-header h1 { font-size: 26px; font-weight: 600; margin-bottom: 6px; }
+  .form-header p { font-size: 15px; color: #888780; }
   .step-pills { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
-  .pill { padding: 4px 14px; border-radius: 20px; font-size: 12px; border: 0.5px solid #d3d1c7; color: #888780; cursor: pointer; transition: all .15s; background: transparent; }
+  .pill { padding: 6px 16px; border-radius: 20px; font-size: 14px; border: 0.5px solid #d3d1c7; color: #888780; cursor: pointer; transition: all .15s; background: transparent; }
   .pill.active { background: #e6f1fb; color: #185fa5; border-color: #185fa5; font-weight: 500; }
   .pill.done { background: #eaf3de; color: #3b6d11; border-color: #3b6d11; }
   .progress-bar { height: 3px; background: #d3d1c7; border-radius: 2px; margin-bottom: 1.5rem; }
   .progress-fill { height: 100%; border-radius: 2px; background: #185fa5; transition: width .3s; }
   .section-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
-  .section-title { font-size: 11px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1rem; }
-  .field-row { margin-bottom: 14px; }
+  .section-title { font-size: 13px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1rem; }
+  .field-row { margin-bottom: 16px; }
   .field-row:last-child { margin-bottom: 0; }
-  .field-label { font-size: 13px; color: #5f5e5a; margin-bottom: 5px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .field-label { font-size: 15px; color: #5f5e5a; margin-bottom: 6px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
   .required-dot { width: 5px; height: 5px; border-radius: 50%; background: #e24b4a; display: inline-block; flex-shrink: 0; }
-  .field-input, .field-select { width: 100%; height: 38px; padding: 0 12px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 14px; background: #f5f4f0; color: #1a1a18; outline: none; font-family: inherit; transition: border-color .15s; }
+  .field-input, .field-select { width: 100%; height: 44px; padding: 0 14px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 16px; background: #f5f4f0; color: #1a1a18; outline: none; font-family: inherit; transition: border-color .15s; }
   .field-input:focus, .field-select:focus { border-color: #185fa5; background: #fff; }
-  .field-textarea { width: 100%; padding: 10px 12px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 14px; background: #f5f4f0; color: #1a1a18; resize: vertical; outline: none; font-family: inherit; transition: border-color .15s; }
+  .field-textarea { width: 100%; padding: 12px 14px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 16px; background: #f5f4f0; color: #1a1a18; resize: vertical; line-height: 1.6; outline: none; font-family: inherit; transition: border-color .15s; }
   .field-textarea:focus { border-color: #185fa5; background: #fff; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .checkbox-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #1a1a18; line-height: 1.4; cursor: pointer; }
-  .checkbox-item input[type=checkbox] { width: 15px; height: 15px; accent-color: #185fa5; flex-shrink: 0; margin-top: 1px; cursor: pointer; }
+  .checkbox-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: #1a1a18; line-height: 1.5; cursor: pointer; }
+  .checkbox-item input[type=checkbox] { width: 18px; height: 18px; accent-color: #185fa5; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
   .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; background: #faeeda; color: #854f0b; }
   .badge-new { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; background: #eaf3de; color: #3b6d11; }
-  .hint { font-size: 12px; color: #b4b2a9; margin-top: 4px; line-height: 1.5; }
+  .hint { font-size: 14px; color: #b4b2a9; margin-top: 5px; line-height: 1.6; }
   .toggle-group { display: flex; gap: 8px; flex-wrap: wrap; }
-  .toggle-btn { padding: 6px 14px; border-radius: 20px; font-size: 13px; border: 0.5px solid #d3d1c7; background: transparent; color: #888780; cursor: pointer; transition: all .15s; font-family: inherit; }
+  .toggle-btn { padding: 8px 18px; border-radius: 20px; font-size: 15px; border: 0.5px solid #d3d1c7; background: transparent; color: #888780; cursor: pointer; transition: all .15s; font-family: inherit; }
   .toggle-btn.on { background: #e6f1fb; color: #185fa5; border-color: #185fa5; }
   .toggle-btn:hover:not(.on) { background: #f1efe8; }
-  .intro-box { background: #f1efe8; border-radius: 8px; padding: 14px 16px; margin-bottom: 1rem; font-size: 13px; color: #5f5e5a; line-height: 1.7; }
+  .intro-box { background: #f1efe8; border-radius: 8px; padding: 16px 18px; margin-bottom: 1rem; font-size: 15px; color: #5f5e5a; line-height: 1.8; }
   .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
   .feature-item { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 10px 12px; }
   .feature-title { font-size: 12px; font-weight: 600; color: #1a1a18; margin-bottom: 2px; }
@@ -65,12 +65,12 @@
   .brd-pre { padding: 0 10px; font-size: 14px; font-weight: 600; border-right: 0.5px solid #d3d1c7; height: 100%; display: flex; align-items: center; background: #fff; flex-shrink: 0; color: #5f5e5a; }
   .brd-input { border: none; background: transparent; padding: 0 10px; font-size: 14px; color: #1a1a18; width: 100%; outline: none; font-family: inherit; }
   .nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; }
-  .btn { padding: 9px 22px; border-radius: 8px; font-size: 14px; cursor: pointer; border: 0.5px solid #d3d1c7; background: transparent; color: #1a1a18; transition: background .15s; font-family: inherit; }
+  .btn { padding: 11px 26px; border-radius: 8px; font-size: 16px; cursor: pointer; border: 0.5px solid #d3d1c7; background: transparent; color: #1a1a18; transition: background .15s; font-family: inherit; }
   .btn:hover { background: #f1efe8; }
   .btn-primary { background: #1a1a18; color: #fff; border-color: transparent; }
   .btn-primary:hover { opacity: .85; }
   .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
-  .page-count { font-size: 13px; color: #b4b2a9; }
+  .page-count { font-size: 15px; color: #b4b2a9; }
   .page { display: none; }
   .page.active { display: block; }
   .error-msg { font-size: 12px; color: #e24b4a; margin-top: 4px; }
@@ -82,277 +82,277 @@
 <body>
 <div class="form-wrap">
   <div class="form-header">
-    <h1>台大社會學系系友資料庫</h1>
-    <p>建立系友橫向網絡與資源共享平台</p>
+    <h1>å°å¤§ç¤¾æå­¸ç³»ç³»åè³æåº«</h1>
+    <p>å»ºç«ç³»åæ©«åç¶²çµ¡èè³æºå±äº«å¹³å°</p>
   </div>
 
   <div class="step-pills">
-    <div class="pill active" id="pill0" onclick="goTo(0)">① 基本資訊</div>
-    <div class="pill" id="pill1" onclick="goTo(1)">② 現況</div>
-    <div class="pill" id="pill2" onclick="goTo(2)">③ 資源連結</div>
-    <div class="pill" id="pill3" onclick="goTo(3)">④ 傳承意願</div>
-    <div class="pill" id="pill4" onclick="goTo(4)">⑤ 聯絡設定</div>
+    <div class="pill active" id="pill0" onclick="goTo(0)">â  åºæ¬è³è¨</div>
+    <div class="pill" id="pill1" onclick="goTo(1)">â¡ ç¾æ³</div>
+    <div class="pill" id="pill2" onclick="goTo(2)">â¢ è³æºé£çµ</div>
+    <div class="pill" id="pill3" onclick="goTo(3)">â£ å³æ¿æé¡</div>
+    <div class="pill" id="pill4" onclick="goTo(4)">â¤ è¯çµ¡è¨­å®</div>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="prog" style="width:20%"></div></div>
 
   <!-- Page 0 -->
   <div class="page active" id="page0">
     <div class="intro-box">
-      <p style="font-weight:600;color:#1a1a18;margin-bottom:6px">歡迎加入系友資料庫</p>
-      <p style="margin-bottom:10px">這份資料庫的目的是讓系友之間可以找到彼此、互相支持，也讓在校學弟妹有機會聯繫到業界與學界的系友前輩。填寫後，你可以：</p>
+      <p style="font-weight:600;color:#1a1a18;margin-bottom:6px">æ­¡è¿å å¥ç³»åè³æåº«</p>
+      <p style="margin-bottom:10px">éä»½è³æåº«çç®çæ¯è®ç³»åä¹éå¯ä»¥æ¾å°å½¼æ­¤ãäºç¸æ¯æï¼ä¹è®å¨æ ¡å­¸å¼å¦¹ææ©æè¯ç¹«å°æ¥­çèå­¸ççç³»ååè¼©ãå¡«å¯«å¾ï¼ä½ å¯ä»¥ï¼</p>
       <div class="feature-grid">
-        <div class="feature-item"><div class="feature-title">被學弟妹找到</div><div class="feature-desc">在校生尋找職涯諮詢時，系辦可依你的授權轉介聯絡</div></div>
-        <div class="feature-item"><div class="feature-title">與系友們人脈資源連結</div><div class="feature-desc">透過系辦媒合，找到同行業、同城市或有合作機會的系友</div></div>
-        <div class="feature-item"><div class="feature-title">參與系上固定活動</div><div class="feature-desc">收到大手牽小手、返校日等活動邀請</div></div>
-        <div class="feature-item"><div class="feature-title">你決定資料怎麼用</div><div class="feature-desc">第五頁可逐項設定系辦在哪些情境下分享你的聯絡方式</div></div>
+        <div class="feature-item"><div class="feature-title">è¢«å­¸å¼å¦¹æ¾å°</div><div class="feature-desc">å¨æ ¡çå°æ¾è·æ¶¯è«®è©¢æï¼ç³»è¾¦å¯ä¾ä½ çææ¬è½ä»è¯çµ¡</div></div>
+        <div class="feature-item"><div class="feature-title">èç³»ååäººèè³æºé£çµ</div><div class="feature-desc">ééç³»è¾¦åªåï¼æ¾å°åè¡æ¥­ãååå¸ææåä½æ©æçç³»å</div></div>
+        <div class="feature-item"><div class="feature-title">åèç³»ä¸åºå®æ´»å</div><div class="feature-desc">æ¶å°å¤§æç½å°æãè¿æ ¡æ¥ç­æ´»åéè«</div></div>
+        <div class="feature-item"><div class="feature-title">ä½ æ±ºå®è³ææéº¼ç¨</div><div class="feature-desc">ç¬¬äºé å¯éé è¨­å®ç³»è¾¦å¨åªäºæå¢ä¸åäº«ä½ çè¯çµ¡æ¹å¼</div></div>
       </div>
-      <p style="margin-top:10px;font-size:12px;color:#b4b2a9">填寫約需 5 分鐘。所有欄位除姓名、Email 外皆為選填。</p>
+      <p style="margin-top:10px;font-size:12px;color:#b4b2a9">å¡«å¯«ç´é 5 åéãæææ¬ä½é¤å§åãEmail å¤ççºé¸å¡«ã</p>
     </div>
     <div class="section-card">
-      <div class="section-title">基本資訊</div>
+      <div class="section-title">åºæ¬è³è¨</div>
       <div class="two-col">
         <div class="field-row">
-          <div class="field-label"><span class="required-dot"></span> 姓名</div>
-          <input class="field-input" id="f_姓名" type="text" placeholder="你的名字">
+          <div class="field-label"><span class="required-dot"></span> å§å</div>
+          <input class="field-input" id="f_å§å" type="text" placeholder="ä½ çåå­">
         </div>
         <div class="field-row">
-          <div class="field-label"><span class="required-dot"></span> 電子信箱</div>
-          <input class="field-input" id="f_電子信箱" type="email" placeholder="your@email.com">
+          <div class="field-label"><span class="required-dot"></span> é»å­ä¿¡ç®±</div>
+          <input class="field-input" id="f_é»å­ä¿¡ç®±" type="email" placeholder="your@email.com">
         </div>
       </div>
       <div class="field-row">
-        <div class="field-label"><span class="required-dot"></span> 與系所的關係</div>
-        <div class="toggle-group" id="g_與系所關係">
-          <button class="toggle-btn on" onclick="toggleOne(this,'g_與系所關係')">台大社會系畢業生</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_與系所關係')">系上老師／研究人員</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_與系所關係')">系友會員（非社會系）</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_與系所關係')">其他關係人</button>
+        <div class="field-label"><span class="required-dot"></span> èç³»æçéä¿</div>
+        <div class="toggle-group" id="g_èç³»æéä¿">
+          <button class="toggle-btn on" onclick="toggleOne(this,'g_èç³»æéä¿')">å°å¤§ç¤¾æç³»ç¢æ¥­ç</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_èç³»æéä¿')">ç³»ä¸èå¸«ï¼ç ç©¶äººå¡</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_èç³»æéä¿')">ç³»åæå¡ï¼éç¤¾æç³»ï¼</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_èç³»æéä¿')">å¶ä»éä¿äºº</button>
         </div>
       </div>
       <div class="field-row">
-        <div class="field-label">入學年份（可複填）</div>
+        <div class="field-label">å¥å­¸å¹´ä»½ï¼å¯è¤å¡«ï¼</div>
         <div class="brd-group">
-          <div class="brd-field"><div class="brd-label">學士 B</div><div class="brd-prefix"><span class="brd-pre">B</span><input class="brd-input" id="f_入學年份B" type="text" placeholder="例：110" maxlength="3"></div></div>
-          <div class="brd-field"><div class="brd-label">碩士 R</div><div class="brd-prefix"><span class="brd-pre">R</span><input class="brd-input" id="f_入學年份R" type="text" placeholder="例：112" maxlength="3"></div></div>
-          <div class="brd-field"><div class="brd-label">博士 D</div><div class="brd-prefix"><span class="brd-pre">D</span><input class="brd-input" id="f_入學年份D" type="text" placeholder="例：109" maxlength="3"></div></div>
+          <div class="brd-field"><div class="brd-label">å­¸å£« B</div><div class="brd-prefix"><span class="brd-pre">B</span><input class="brd-input" id="f_å¥å­¸å¹´ä»½B" type="text" placeholder="ä¾ï¼110" maxlength="3"></div></div>
+          <div class="brd-field"><div class="brd-label">ç¢©å£« R</div><div class="brd-prefix"><span class="brd-pre">R</span><input class="brd-input" id="f_å¥å­¸å¹´ä»½R" type="text" placeholder="ä¾ï¼112" maxlength="3"></div></div>
+          <div class="brd-field"><div class="brd-label">åå£« D</div><div class="brd-prefix"><span class="brd-pre">D</span><input class="brd-input" id="f_å¥å­¸å¹´ä»½D" type="text" placeholder="ä¾ï¼109" maxlength="3"></div></div>
         </div>
-        <div class="hint">填入入學民國年份，不相關欄位留空即可。</div>
+        <div class="hint">å¡«å¥å¥å­¸æ°åå¹´ä»½ï¼ä¸ç¸éæ¬ä½çç©ºå³å¯ã</div>
       </div>
       <div class="field-row">
-        <div class="field-label">LinkedIn 或個人首頁</div>
-        <input class="field-input" id="f_LinkedIn或個人首頁" type="url" placeholder="linkedin.com/in/yourname 或其他個人網址">
+        <div class="field-label">LinkedIn æåäººé¦é </div>
+        <input class="field-input" id="f_LinkedInæåäººé¦é " type="url" placeholder="linkedin.com/in/yourname æå¶ä»åäººç¶²å">
       </div>
       <div class="field-row">
-        <div class="field-label">就讀學位 <span class="badge">可複選</span></div>
-        <div class="checkbox-grid" id="g_就讀學位">
-          <label class="checkbox-item"><input type="checkbox" value="社會學系學士"> 社會學系學士</label>
-          <label class="checkbox-item"><input type="checkbox" value="社會學研究所碩士"> 社會學研究所碩士</label>
-          <label class="checkbox-item"><input type="checkbox" value="社會學研究所博士"> 社會學研究所博士</label>
-          <label class="checkbox-item"><input type="checkbox" value="雙主修／輔系"> 雙主修／輔系</label>
+        <div class="field-label">å°±è®å­¸ä½ <span class="badge">å¯è¤é¸</span></div>
+        <div class="checkbox-grid" id="g_å°±è®å­¸ä½">
+          <label class="checkbox-item"><input type="checkbox" value="ç¤¾æå­¸ç³»å­¸å£«"> ç¤¾æå­¸ç³»å­¸å£«</label>
+          <label class="checkbox-item"><input type="checkbox" value="ç¤¾æå­¸ç ç©¶æç¢©å£«"> ç¤¾æå­¸ç ç©¶æç¢©å£«</label>
+          <label class="checkbox-item"><input type="checkbox" value="ç¤¾æå­¸ç ç©¶æåå£«"> ç¤¾æå­¸ç ç©¶æåå£«</label>
+          <label class="checkbox-item"><input type="checkbox" value="éä¸»ä¿®ï¼è¼ç³»"> éä¸»ä¿®ï¼è¼ç³»</label>
         </div>
       </div>
     </div>
-    <div class="nav-row"><span class="page-count">第 1 頁，共 5 頁</span><button class="btn btn-primary" onclick="goTo(1)">下一步 →</button></div>
+    <div class="nav-row"><span class="page-count">ç¬¬ 1 é ï¼å± 5 é </span><button class="btn btn-primary" onclick="goTo(1)">ä¸ä¸æ­¥ â</button></div>
   </div>
 
   <!-- Page 1 -->
   <div class="page" id="page1">
     <div class="section-card">
-      <div class="section-title">目前狀況</div>
+      <div class="section-title">ç®åçæ³</div>
       <div class="field-row">
-        <div class="field-label"><span class="required-dot"></span> 目前狀態</div>
-        <div class="toggle-group" id="g_目前狀態">
-          <button class="toggle-btn on" onclick="toggleOne(this,'g_目前狀態')">全職在職</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_目前狀態')">兼職／接案</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_目前狀態')">創業中</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_目前狀態')">繼續升學</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_目前狀態')">職涯轉換中</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_目前狀態')">暫時休息</button>
+        <div class="field-label"><span class="required-dot"></span> ç®åçæ</div>
+        <div class="toggle-group" id="g_ç®åçæ">
+          <button class="toggle-btn on" onclick="toggleOne(this,'g_ç®åçæ')">å¨è·å¨è·</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_ç®åçæ')">å¼è·ï¼æ¥æ¡</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_ç®åçæ')">åµæ¥­ä¸­</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_ç®åçæ')">ç¹¼çºåå­¸</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_ç®åçæ')">è·æ¶¯è½æä¸­</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_ç®åçæ')">æ«æä¼æ¯</button>
         </div>
       </div>
       <div class="two-col">
-        <div class="field-row"><div class="field-label">現職職稱</div><input class="field-input" id="f_現職職稱" type="text" placeholder="例：社會研究員"></div>
-        <div class="field-row"><div class="field-label">服務單位</div><input class="field-input" id="f_服務單位" type="text" placeholder="公司或機構名稱"></div>
+        <div class="field-row"><div class="field-label">ç¾è·è·ç¨±</div><input class="field-input" id="f_ç¾è·è·ç¨±" type="text" placeholder="ä¾ï¼ç¤¾æç ç©¶å¡"></div>
+        <div class="field-row"><div class="field-label">æåå®ä½</div><input class="field-input" id="f_æåå®ä½" type="text" placeholder="å¬å¸ææ©æ§åç¨±"></div>
       </div>
       <div class="two-col">
-        <div class="field-row"><div class="field-label">所在城市</div><input class="field-input" id="f_所在城市" type="text" placeholder="例：台北市"></div>
+        <div class="field-row"><div class="field-label">æå¨åå¸</div><input class="field-input" id="f_æå¨åå¸" type="text" placeholder="ä¾ï¼å°åå¸"></div>
         <div class="field-row">
-          <div class="field-label">所在國家／地區</div>
-          <select class="field-select" id="f_所在國家地區">
-            <option value="">請選擇</option>
-            <option>台灣</option><option>美國</option><option>日本</option>
-            <option>英國</option><option>新加坡</option><option>馬來西亞</option><option>其他</option>
+          <div class="field-label">æå¨åå®¶ï¼å°å</div>
+          <select class="field-select" id="f_æå¨åå®¶å°å">
+            <option value="">è«é¸æ</option>
+            <option>å°ç£</option><option>ç¾å</option><option>æ¥æ¬</option>
+            <option>è±å</option><option>æ°å å¡</option><option>é¦¬ä¾è¥¿äº</option><option>å¶ä»</option>
           </select>
         </div>
       </div>
       <div class="field-row">
-        <div class="field-label">所在行業 <span class="badge">可複選</span></div>
-        <div class="checkbox-grid" id="g_所在行業">
-          <label class="checkbox-item"><input type="checkbox" value="非營利／社會企業"> 非營利／社會企業</label>
-          <label class="checkbox-item"><input type="checkbox" value="政府／公部門"> 政府／公部門</label>
-          <label class="checkbox-item"><input type="checkbox" value="政黨／政策／智庫"> 政黨／政策／智庫</label>
-          <label class="checkbox-item"><input type="checkbox" value="國際組織／NGO"> 國際組織／NGO</label>
-          <label class="checkbox-item"><input type="checkbox" value="學術研究／教育"> 學術研究／教育</label>
-          <label class="checkbox-item"><input type="checkbox" value="媒體／傳播"> 媒體／傳播</label>
-          <label class="checkbox-item"><input type="checkbox" value="文化／藝術"> 文化／藝術</label>
-          <label class="checkbox-item"><input type="checkbox" value="金融／顧問"> 金融／顧問</label>
-          <label class="checkbox-item"><input type="checkbox" value="行銷"> 行銷</label>
-          <label class="checkbox-item"><input type="checkbox" value="人資"> 人資</label>
-          <label class="checkbox-item"><input type="checkbox" value="軟體工程"> 軟體工程</label>
-          <label class="checkbox-item"><input type="checkbox" value="硬體工程"> 硬體工程</label>
-          <label class="checkbox-item"><input type="checkbox" value="醫療／公衛"> 醫療／公衛</label>
-          <label class="checkbox-item"><input type="checkbox" value="法律／社福"> 法律／社福</label>
+        <div class="field-label">æå¨è¡æ¥­ <span class="badge">å¯è¤é¸</span></div>
+        <div class="checkbox-grid" id="g_æå¨è¡æ¥­">
+          <label class="checkbox-item"><input type="checkbox" value="éçå©ï¼ç¤¾æä¼æ¥­"> éçå©ï¼ç¤¾æä¼æ¥­</label>
+          <label class="checkbox-item"><input type="checkbox" value="æ¿åºï¼å¬é¨é"> æ¿åºï¼å¬é¨é</label>
+          <label class="checkbox-item"><input type="checkbox" value="æ¿é»¨ï¼æ¿ç­ï¼æºåº«"> æ¿é»¨ï¼æ¿ç­ï¼æºåº«</label>
+          <label class="checkbox-item"><input type="checkbox" value="åéçµç¹ï¼NGO"> åéçµç¹ï¼NGO</label>
+          <label class="checkbox-item"><input type="checkbox" value="å­¸è¡ç ç©¶ï¼æè²"> å­¸è¡ç ç©¶ï¼æè²</label>
+          <label class="checkbox-item"><input type="checkbox" value="åªé«ï¼å³æ­"> åªé«ï¼å³æ­</label>
+          <label class="checkbox-item"><input type="checkbox" value="æåï¼èè¡"> æåï¼èè¡</label>
+          <label class="checkbox-item"><input type="checkbox" value="éèï¼é¡§å"> éèï¼é¡§å</label>
+          <label class="checkbox-item"><input type="checkbox" value="è¡é·"> è¡é·</label>
+          <label class="checkbox-item"><input type="checkbox" value="äººè³"> äººè³</label>
+          <label class="checkbox-item"><input type="checkbox" value="è»é«å·¥ç¨"> è»é«å·¥ç¨</label>
+          <label class="checkbox-item"><input type="checkbox" value="ç¡¬é«å·¥ç¨"> ç¡¬é«å·¥ç¨</label>
+          <label class="checkbox-item"><input type="checkbox" value="é«çï¼å¬è¡"> é«çï¼å¬è¡</label>
+          <label class="checkbox-item"><input type="checkbox" value="æ³å¾ï¼ç¤¾ç¦"> æ³å¾ï¼ç¤¾ç¦</label>
         </div>
         <div class="other-input-row">
-          <label class="checkbox-item" style="flex-shrink:0"><input type="checkbox" id="other-industry-cb"> 其他</label>
-          <input type="text" id="other-industry-input" placeholder="請填寫你的行業" style="opacity:0.4;pointer-events:none;">
+          <label class="checkbox-item" style="flex-shrink:0"><input type="checkbox" id="other-industry-cb"> å¶ä»</label>
+          <input type="text" id="other-industry-input" placeholder="è«å¡«å¯«ä½ çè¡æ¥­" style="opacity:0.4;pointer-events:none;">
         </div>
       </div>
     </div>
-    <div class="nav-row"><button class="btn" onclick="goTo(0)">← 上一步</button><span class="page-count">第 2 頁，共 5 頁</span><button class="btn btn-primary" onclick="goTo(2)">下一步 →</button></div>
+    <div class="nav-row"><button class="btn" onclick="goTo(0)">â ä¸ä¸æ­¥</button><span class="page-count">ç¬¬ 2 é ï¼å± 5 é </span><button class="btn btn-primary" onclick="goTo(2)">ä¸ä¸æ­¥ â</button></div>
   </div>
 
   <!-- Page 2 -->
   <div class="page" id="page2">
     <div class="section-card">
-      <div class="section-title">我能提供的資源 <span class="badge">可複選</span></div>
-      <div class="checkbox-grid" id="g_能提供的資源">
-        <label class="checkbox-item"><input type="checkbox" value="職涯諮詢"> 職涯諮詢（聊聊我的路徑）</label>
-        <label class="checkbox-item"><input type="checkbox" value="實習／工作機會轉介"> 實習／工作機會轉介</label>
-        <label class="checkbox-item"><input type="checkbox" value="業界人脈引薦"> 業界人脈引薦</label>
-        <label class="checkbox-item"><input type="checkbox" value="研究合作"> 研究合作</label>
-        <label class="checkbox-item"><input type="checkbox" value="演講／分享"> 演講／分享</label>
-        <label class="checkbox-item"><input type="checkbox" value="口試／論文建議"> 口試／論文建議</label>
-        <label class="checkbox-item"><input type="checkbox" value="海外求學資訊"> 海外求學資訊</label>
-        <label class="checkbox-item"><input type="checkbox" value="創業／社會創新建議"> 創業／社會創新建議</label>
+      <div class="section-title">æè½æä¾çè³æº <span class="badge">å¯è¤é¸</span></div>
+      <div class="checkbox-grid" id="g_è½æä¾çè³æº">
+        <label class="checkbox-item"><input type="checkbox" value="è·æ¶¯è«®è©¢"> è·æ¶¯è«®è©¢ï¼èèæçè·¯å¾ï¼</label>
+        <label class="checkbox-item"><input type="checkbox" value="å¯¦ç¿ï¼å·¥ä½æ©æè½ä»"> å¯¦ç¿ï¼å·¥ä½æ©æè½ä»</label>
+        <label class="checkbox-item"><input type="checkbox" value="æ¥­çäººèå¼è¦"> æ¥­çäººèå¼è¦</label>
+        <label class="checkbox-item"><input type="checkbox" value="ç ç©¶åä½"> ç ç©¶åä½</label>
+        <label class="checkbox-item"><input type="checkbox" value="æ¼è¬ï¼åäº«"> æ¼è¬ï¼åäº«</label>
+        <label class="checkbox-item"><input type="checkbox" value="å£è©¦ï¼è«æå»ºè­°"> å£è©¦ï¼è«æå»ºè­°</label>
+        <label class="checkbox-item"><input type="checkbox" value="æµ·å¤æ±å­¸è³è¨"> æµ·å¤æ±å­¸è³è¨</label>
+        <label class="checkbox-item"><input type="checkbox" value="åµæ¥­ï¼ç¤¾æåµæ°å»ºè­°"> åµæ¥­ï¼ç¤¾æåµæ°å»ºè­°</label>
       </div>
     </div>
     <div class="section-card">
-      <div class="section-title">我希望獲得的資源 <span class="badge">可複選</span></div>
-      <div class="checkbox-grid" id="g_希望獲得的資源">
-        <label class="checkbox-item"><input type="checkbox" value="找工作／實習機會"> 找工作／實習機會</label>
-        <label class="checkbox-item"><input type="checkbox" value="找研究合作夥伴"> 找研究合作夥伴</label>
-        <label class="checkbox-item"><input type="checkbox" value="找受訪者／受試者"> 找受訪者／受試者</label>
-        <label class="checkbox-item"><input type="checkbox" value="業界人脈"> 業界人脈</label>
-        <label class="checkbox-item"><input type="checkbox" value="找同在海外的系友"> 找同在海外的系友</label>
-        <label class="checkbox-item"><input type="checkbox" value="只是保持聯繫"> 只是保持聯繫</label>
+      <div class="section-title">æå¸æç²å¾çè³æº <span class="badge">å¯è¤é¸</span></div>
+      <div class="checkbox-grid" id="g_å¸æç²å¾çè³æº">
+        <label class="checkbox-item"><input type="checkbox" value="æ¾å·¥ä½ï¼å¯¦ç¿æ©æ"> æ¾å·¥ä½ï¼å¯¦ç¿æ©æ</label>
+        <label class="checkbox-item"><input type="checkbox" value="æ¾ç ç©¶åä½å¤¥ä¼´"> æ¾ç ç©¶åä½å¤¥ä¼´</label>
+        <label class="checkbox-item"><input type="checkbox" value="æ¾åè¨ªèï¼åè©¦è"> æ¾åè¨ªèï¼åè©¦è</label>
+        <label class="checkbox-item"><input type="checkbox" value="æ¥­çäººè"> æ¥­çäººè</label>
+        <label class="checkbox-item"><input type="checkbox" value="æ¾åå¨æµ·å¤çç³»å"> æ¾åå¨æµ·å¤çç³»å</label>
+        <label class="checkbox-item"><input type="checkbox" value="åªæ¯ä¿æè¯ç¹«"> åªæ¯ä¿æè¯ç¹«</label>
       </div>
     </div>
     <div class="section-card">
-      <div class="section-title">我希望系上提供什麼 <span class="badge">可複選</span></div>
-      <div class="checkbox-grid" id="g_希望系上提供">
-        <label class="checkbox-item"><input type="checkbox" value="定期系友電子報"> 定期系友電子報</label>
-        <label class="checkbox-item"><input type="checkbox" value="系友聚會／返校活動"> 系友聚會／返校活動</label>
-        <label class="checkbox-item"><input type="checkbox" value="與在校生的交流機會"> 與在校生的交流機會</label>
-        <label class="checkbox-item"><input type="checkbox" value="系所研究成果更新"> 系所研究成果更新</label>
-        <label class="checkbox-item"><input type="checkbox" value="職缺轉介平台"> 職缺轉介平台</label>
-        <label class="checkbox-item"><input type="checkbox" value="系友間的橫向媒合"> 系友間的橫向媒合</label>
-        <label class="checkbox-item"><input type="checkbox" value="捐款／回饋系所資訊"> 捐款／回饋系所資訊</label>
-        <label class="checkbox-item"><input type="checkbox" value="不需要，保持聯絡即可"> 不需要，保持聯絡即可</label>
+      <div class="section-title">æå¸æç³»ä¸æä¾ä»éº¼ <span class="badge">å¯è¤é¸</span></div>
+      <div class="checkbox-grid" id="g_å¸æç³»ä¸æä¾">
+        <label class="checkbox-item"><input type="checkbox" value="å®æç³»åé»å­å ±"> å®æç³»åé»å­å ±</label>
+        <label class="checkbox-item"><input type="checkbox" value="ç³»åèæï¼è¿æ ¡æ´»å"> ç³»åèæï¼è¿æ ¡æ´»å</label>
+        <label class="checkbox-item"><input type="checkbox" value="èå¨æ ¡ççäº¤æµæ©æ"> èå¨æ ¡ççäº¤æµæ©æ</label>
+        <label class="checkbox-item"><input type="checkbox" value="ç³»æç ç©¶æææ´æ°"> ç³»æç ç©¶æææ´æ°</label>
+        <label class="checkbox-item"><input type="checkbox" value="è·ç¼ºè½ä»å¹³å°"> è·ç¼ºè½ä»å¹³å°</label>
+        <label class="checkbox-item"><input type="checkbox" value="ç³»åéçæ©«ååªå"> ç³»åéçæ©«ååªå</label>
+        <label class="checkbox-item"><input type="checkbox" value="ææ¬¾ï¼åé¥ç³»æè³è¨"> ææ¬¾ï¼åé¥ç³»æè³è¨</label>
+        <label class="checkbox-item"><input type="checkbox" value="ä¸éè¦ï¼ä¿æè¯çµ¡å³å¯"> ä¸éè¦ï¼ä¿æè¯çµ¡å³å¯</label>
       </div>
     </div>
-    <div class="nav-row"><button class="btn" onclick="goTo(1)">← 上一步</button><span class="page-count">第 3 頁，共 5 頁</span><button class="btn btn-primary" onclick="goTo(3)">下一步 →</button></div>
+    <div class="nav-row"><button class="btn" onclick="goTo(1)">â ä¸ä¸æ­¥</button><span class="page-count">ç¬¬ 3 é ï¼å± 5 é </span><button class="btn btn-primary" onclick="goTo(3)">ä¸ä¸æ­¥ â</button></div>
   </div>
 
   <!-- Page 3 -->
   <div class="page" id="page3">
     <div class="section-card">
-      <div class="section-title">對在校學弟妹的傳承意願</div>
+      <div class="section-title">å°å¨æ ¡å­¸å¼å¦¹çå³æ¿æé¡</div>
       <div class="field-row">
-        <div class="field-label">是否願意加入 Mentor 計畫？</div>
-        <div class="toggle-group" id="g_Mentor意願">
-          <button class="toggle-btn on" onclick="toggleOne(this,'g_Mentor意願')">願意（配對一位 Mentee）</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_Mentor意願')">考慮看看</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_Mentor意願')">目前不方便</button>
+        <div class="field-label">æ¯å¦é¡æå å¥ Mentor è¨ç«ï¼</div>
+        <div class="toggle-group" id="g_Mentoræé¡">
+          <button class="toggle-btn on" onclick="toggleOne(this,'g_Mentoræé¡')">é¡æï¼éå°ä¸ä½ Menteeï¼</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_Mentoræé¡')">èæ®çç</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_Mentoræé¡')">ç®åä¸æ¹ä¾¿</button>
         </div>
       </div>
       <div class="field-row">
-        <div class="field-label">接受在校生／系友會員 30 分鐘職涯諮詢</div>
-        <div class="toggle-group" id="g_職涯諮詢意願">
-          <button class="toggle-btn on" onclick="toggleOne(this,'g_職涯諮詢意願')">願意（每學期最多 2 次）</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_職涯諮詢意願')">願意（次數不限）</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_職涯諮詢意願')">目前不方便</button>
+        <div class="field-label">æ¥åå¨æ ¡çï¼ç³»åæå¡ 30 åéè·æ¶¯è«®è©¢</div>
+        <div class="toggle-group" id="g_è·æ¶¯è«®è©¢æé¡">
+          <button class="toggle-btn on" onclick="toggleOne(this,'g_è·æ¶¯è«®è©¢æé¡')">é¡æï¼æ¯å­¸ææå¤ 2 æ¬¡ï¼</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_è·æ¶¯è«®è©¢æé¡')">é¡æï¼æ¬¡æ¸ä¸éï¼</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_è·æ¶¯è«®è©¢æé¡')">ç®åä¸æ¹ä¾¿</button>
         </div>
-        <div class="hint">由對方主動聯繫，單次 30 分鐘，不需要長期承諾。</div>
+        <div class="hint">ç±å°æ¹ä¸»åè¯ç¹«ï¼å®æ¬¡ 30 åéï¼ä¸éè¦é·ææ¿è«¾ã</div>
       </div>
       <div class="field-row">
-        <div class="field-label">大手牽小手：職涯分享活動 <span class="badge-new">固定活動</span></div>
+        <div class="field-label">å¤§æç½å°æï¼è·æ¶¯åäº«æ´»å <span class="badge-new">åºå®æ´»å</span></div>
         <div class="activity-card">
-          <div class="activity-title">系上每學期舉辦「大手牽小手」職涯分享日</div>
-          <div class="activity-desc">系友回到系上，以 20–30 分鐘向在校生分享職涯路徑與心得。形式輕鬆，不需要準備正式簡報。</div>
-          <div class="toggle-group" id="g_大手牽小手">
-            <button class="toggle-btn on" onclick="toggleOne(this,'g_大手牽小手')">有興趣，請通知我</button>
-            <button class="toggle-btn" onclick="toggleOne(this,'g_大手牽小手')">看時間，再決定</button>
-            <button class="toggle-btn" onclick="toggleOne(this,'g_大手牽小手')">暫時不考慮</button>
+          <div class="activity-title">ç³»ä¸æ¯å­¸æèè¾¦ãå¤§æç½å°æãè·æ¶¯åäº«æ¥</div>
+          <div class="activity-desc">ç³»ååå°ç³»ä¸ï¼ä»¥ 20â30 åéåå¨æ ¡çåäº«è·æ¶¯è·¯å¾èå¿å¾ãå½¢å¼è¼é¬ï¼ä¸éè¦æºåæ­£å¼ç°¡å ±ã</div>
+          <div class="toggle-group" id="g_å¤§æç½å°æ">
+            <button class="toggle-btn on" onclick="toggleOne(this,'g_å¤§æç½å°æ')">æèè¶£ï¼è«éç¥æ</button>
+            <button class="toggle-btn" onclick="toggleOne(this,'g_å¤§æç½å°æ')">çæéï¼åæ±ºå®</button>
+            <button class="toggle-btn" onclick="toggleOne(this,'g_å¤§æç½å°æ')">æ«æä¸èæ®</button>
           </div>
         </div>
       </div>
       <div class="field-row">
-        <div class="field-label">可分享的主題 <span class="badge">可複選</span></div>
-        <div class="checkbox-grid" id="g_可分享主題">
-          <label class="checkbox-item"><input type="checkbox" value="選課／學習規劃"> 選課／學習規劃</label>
-          <label class="checkbox-item"><input type="checkbox" value="研究所申請"> 研究所申請</label>
-          <label class="checkbox-item"><input type="checkbox" value="海外留學"> 海外留學</label>
-          <label class="checkbox-item"><input type="checkbox" value="進入職場"> 進入職場</label>
-          <label class="checkbox-item"><input type="checkbox" value="轉換跑道"> 轉換跑道</label>
-          <label class="checkbox-item"><input type="checkbox" value="社會實踐／倡議"> 社會實踐／倡議</label>
+        <div class="field-label">å¯åäº«çä¸»é¡ <span class="badge">å¯è¤é¸</span></div>
+        <div class="checkbox-grid" id="g_å¯åäº«ä¸»é¡">
+          <label class="checkbox-item"><input type="checkbox" value="é¸èª²ï¼å­¸ç¿è¦å"> é¸èª²ï¼å­¸ç¿è¦å</label>
+          <label class="checkbox-item"><input type="checkbox" value="ç ç©¶æç³è«"> ç ç©¶æç³è«</label>
+          <label class="checkbox-item"><input type="checkbox" value="æµ·å¤çå­¸"> æµ·å¤çå­¸</label>
+          <label class="checkbox-item"><input type="checkbox" value="é²å¥è·å ´"> é²å¥è·å ´</label>
+          <label class="checkbox-item"><input type="checkbox" value="è½æè·é"> è½æè·é</label>
+          <label class="checkbox-item"><input type="checkbox" value="ç¤¾æå¯¦è¸ï¼å¡è­°"> ç¤¾æå¯¦è¸ï¼å¡è­°</label>
         </div>
       </div>
       <div class="field-row">
-        <div class="field-label">每季大約可提供諮詢時間</div>
-        <div class="toggle-group" id="g_每季諮詢時間">
-          <button class="toggle-btn on" onclick="toggleOne(this,'g_每季諮詢時間')">1–2 小時</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_每季諮詢時間')">3–5 小時</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_每季諮詢時間')">5 小時以上</button>
-          <button class="toggle-btn" onclick="toggleOne(this,'g_每季諮詢時間')">不確定</button>
+        <div class="field-label">æ¯å­£å¤§ç´å¯æä¾è«®è©¢æé</div>
+        <div class="toggle-group" id="g_æ¯å­£è«®è©¢æé">
+          <button class="toggle-btn on" onclick="toggleOne(this,'g_æ¯å­£è«®è©¢æé')">1â2 å°æ</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_æ¯å­£è«®è©¢æé')">3â5 å°æ</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_æ¯å­£è«®è©¢æé')">5 å°æä»¥ä¸</button>
+          <button class="toggle-btn" onclick="toggleOne(this,'g_æ¯å­£è«®è©¢æé')">ä¸ç¢ºå®</button>
         </div>
       </div>
     </div>
-    <div class="nav-row"><button class="btn" onclick="goTo(2)">← 上一步</button><span class="page-count">第 4 頁，共 5 頁</span><button class="btn btn-primary" onclick="goTo(4)">下一步 →</button></div>
+    <div class="nav-row"><button class="btn" onclick="goTo(2)">â ä¸ä¸æ­¥</button><span class="page-count">ç¬¬ 4 é ï¼å± 5 é </span><button class="btn btn-primary" onclick="goTo(4)">ä¸ä¸æ­¥ â</button></div>
   </div>
 
   <!-- Page 4 -->
   <div class="page" id="page4">
     <div class="section-card">
-      <div class="section-title">聯絡方式</div>
+      <div class="section-title">è¯çµ¡æ¹å¼</div>
       <div class="two-col">
-        <div class="field-row"><div class="field-label">手機號碼（選填）</div><input class="field-input" id="f_手機號碼" type="tel" placeholder="0912-345-678"></div>
+        <div class="field-row"><div class="field-label">ææ©èç¢¼ï¼é¸å¡«ï¼</div><input class="field-input" id="f_ææ©èç¢¼" type="tel" placeholder="0912-345-678"></div>
         <div class="field-row">
-          <div class="field-label">偏好聯絡方式</div>
-          <select class="field-select" id="f_偏好聯絡方式">
-            <option value="">請選擇</option>
+          <div class="field-label">åå¥½è¯çµ¡æ¹å¼</div>
+          <select class="field-select" id="f_åå¥½è¯çµ¡æ¹å¼">
+            <option value="">è«é¸æ</option>
             <option>Email</option><option>LINE</option><option>WhatsApp</option><option>IG DM</option>
           </select>
         </div>
       </div>
     </div>
     <div class="section-card">
-      <div class="section-title">系辦可以在哪些情境下分享你的聯絡方式？</div>
-      <div class="hint" style="margin-bottom:12px">目前系友資料由系辦統一管理。請勾選你同意的情境。</div>
+      <div class="section-title">ç³»è¾¦å¯ä»¥å¨åªäºæå¢ä¸åäº«ä½ çè¯çµ¡æ¹å¼ï¼</div>
+      <div class="hint" style="margin-bottom:12px">ç®åç³»åè³æç±ç³»è¾¦çµ±ä¸ç®¡çãè«å¾é¸ä½ åæçæå¢ã</div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <label class="checkbox-item"><input type="checkbox" id="auth1" checked> 學弟妹來信詢問職涯或升學時，轉介你的聯絡方式</label>
-        <label class="checkbox-item"><input type="checkbox" id="auth2" checked> 其他系友主動請系辦媒合時（橫向連結）</label>
-        <label class="checkbox-item"><input type="checkbox" id="auth3" checked> 系上活動邀請（大手牽小手、返校日等）</label>
-        <label class="checkbox-item"><input type="checkbox" id="auth4"> 系所募款或捐款相關聯繫</label>
-        <label class="checkbox-item"><input type="checkbox" id="auth5"> 系所學術合作或研究邀請</label>
+        <label class="checkbox-item"><input type="checkbox" id="auth1" checked> å­¸å¼å¦¹ä¾ä¿¡è©¢åè·æ¶¯æåå­¸æï¼è½ä»ä½ çè¯çµ¡æ¹å¼</label>
+        <label class="checkbox-item"><input type="checkbox" id="auth2" checked> å¶ä»ç³»åä¸»åè«ç³»è¾¦åªåæï¼æ©«åé£çµï¼</label>
+        <label class="checkbox-item"><input type="checkbox" id="auth3" checked> ç³»ä¸æ´»åéè«ï¼å¤§æç½å°æãè¿æ ¡æ¥ç­ï¼</label>
+        <label class="checkbox-item"><input type="checkbox" id="auth4"> ç³»æåæ¬¾æææ¬¾ç¸éè¯ç¹«</label>
+        <label class="checkbox-item"><input type="checkbox" id="auth5"> ç³»æå­¸è¡åä½æç ç©¶éè«</label>
       </div>
-      <div class="hint" style="margin-top:10px">未勾選的情境，系辦不會主動提供你的聯絡資訊。</div>
+      <div class="hint" style="margin-top:10px">æªå¾é¸çæå¢ï¼ç³»è¾¦ä¸æä¸»åæä¾ä½ çè¯çµ¡è³è¨ã</div>
     </div>
     <div class="section-card">
       <div class="field-row">
-        <label class="checkbox-item"><input type="checkbox" id="f_同意更新提醒" checked><span style="font-size:13px">同意每兩年收到一次資料更新提醒信</span></label>
-        <div class="hint" style="margin-left:23px">確保資料庫長期有效，你可以隨時取消訂閱。</div>
+        <label class="checkbox-item"><input type="checkbox" id="f_åææ´æ°æé" checked><span style="font-size:13px">åææ¯å©å¹´æ¶å°ä¸æ¬¡è³ææ´æ°æéä¿¡</span></label>
+        <div class="hint" style="margin-left:23px">ç¢ºä¿è³æåº«é·æææï¼ä½ å¯ä»¥é¨æåæ¶è¨é±ã</div>
       </div>
     </div>
     <div class="section-card">
-      <div class="section-title">給系上的話（選填）</div>
-      <textarea class="field-textarea" id="f_給系上的話" rows="4" placeholder="有什麼想對系上說的？對活動的建議、想念的老師、或對學弟妹的話…"></textarea>
+      <div class="section-title">çµ¦ç³»ä¸çè©±ï¼é¸å¡«ï¼</div>
+      <textarea class="field-textarea" id="f_çµ¦ç³»ä¸çè©±" rows="4" placeholder="æä»éº¼æ³å°ç³»ä¸èªªçï¼å°æ´»åçå»ºè­°ãæ³å¿µçèå¸«ãæå°å­¸å¼å¦¹çè©±â¦"></textarea>
     </div>
     <div id="submit-error" class="error-msg" style="display:none;margin-bottom:8px"></div>
     <div class="nav-row">
-      <button class="btn" onclick="goTo(3)">← 上一步</button>
-      <span class="page-count">第 5 頁，共 5 頁</span>
-      <button class="btn btn-primary" id="submit-btn" onclick="submitForm()">送出 ✓</button>
+      <button class="btn" onclick="goTo(3)">â ä¸ä¸æ­¥</button>
+      <span class="page-count">ç¬¬ 5 é ï¼å± 5 é </span>
+      <button class="btn btn-primary" id="submit-btn" onclick="submitForm()">éåº â</button>
     </div>
   </div>
 </div>
@@ -401,57 +401,57 @@ otherCb.addEventListener('change', () => {
 });
 
 async function submitForm() {
-  const name  = document.getElementById('f_姓名').value.trim();
-  const email = document.getElementById('f_電子信箱').value.trim();
-  if(!name || !email) { alert('請填寫姓名和電子信箱'); goTo(0); return; }
+  const name  = document.getElementById('f_å§å').value.trim();
+  const email = document.getElementById('f_é»å­ä¿¡ç®±').value.trim();
+  if(!name || !email) { alert('è«å¡«å¯«å§ååé»å­ä¿¡ç®±'); goTo(0); return; }
 
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
-  btn.textContent = '送出中…';
+  btn.textContent = 'éåºä¸­â¦';
 
-  const industries = getChecked('g_所在行業');
+  const industries = getChecked('g_æå¨è¡æ¥­');
   if(otherCb.checked && otherInp.value.trim()) industries.push(otherInp.value.trim());
 
   const brdParts = [];
-  const bVal = document.getElementById('f_入學年份B').value.trim();
-  const rVal = document.getElementById('f_入學年份R').value.trim();
-  const dVal = document.getElementById('f_入學年份D').value.trim();
+  const bVal = document.getElementById('f_å¥å­¸å¹´ä»½B').value.trim();
+  const rVal = document.getElementById('f_å¥å­¸å¹´ä»½R').value.trim();
+  const dVal = document.getElementById('f_å¥å­¸å¹´ä»½D').value.trim();
   if(bVal) brdParts.push('B' + bVal);
   if(rVal) brdParts.push('R' + rVal);
   if(dVal) brdParts.push('D' + dVal);
 
   const fields = {
-    '姓名': name,
+    'å§å': name,
     'Email': email,
-    '與系所關係': getToggleVal('g_與系所關係'),
-    '入學年份 B__': bVal,
-    '入學年份 R__': rVal,
-    '入學年份 D__': dVal,
-    'LinkedIn或個人首頁': document.getElementById('f_LinkedIn或個人首頁').value.trim(),
-    '就讀學位': getChecked('g_就讀學位'),
-    '目前狀態': getToggleVal('g_目前狀態'),
-    '現職職稱': document.getElementById('f_現職職稱').value.trim(),
-    '服務單位': document.getElementById('f_服務單位').value.trim(),
-    '所在城市': document.getElementById('f_所在城市').value.trim(),
-    '所在國家 / 地區': document.getElementById('f_所在國家地區').value,
-    '所在行業': industries,
-    '能提供的資源': getChecked('g_能提供的資源'),
-    '希望獲得的資源': getChecked('g_希望獲得的資源'),
-    '希望系上提供': getChecked('g_希望系上提供'),
-    'Mentor 意願': getToggleVal('g_Mentor意願'),
-    '職涯諮詢意願': getToggleVal('g_職涯諮詢意願'),
-    '大手牽小手': getToggleVal('g_大手牽小手'),
-    '可分享主題': getChecked('g_可分享主題'),
-    '每季諮詢時間': getToggleVal('g_每季諮詢時間'),
-    '手機號碼': document.getElementById('f_手機號碼').value.trim(),
-    '偏好聯絡方式': document.getElementById('f_偏好聯絡方式').value,
-    '授權：學弟妹詢問': document.getElementById('auth1').checked,
-    '授權：系友媒合': document.getElementById('auth2').checked,
-    '授權：活動邀請': document.getElementById('auth3').checked,
-    '授權：募款聯繫': document.getElementById('auth4').checked,
-    '授權：學術合作': document.getElementById('auth5').checked,
-    '同意更新提醒': document.getElementById('f_同意更新提醒').checked,
-    '給系上的話': document.getElementById('f_給系上的話').value.trim(),
+    'èç³»æéä¿': getToggleVal('g_èç³»æéä¿'),
+    'å¥å­¸å¹´ä»½ B__': bVal,
+    'å¥å­¸å¹´ä»½ R__': rVal,
+    'å¥å­¸å¹´ä»½ D__': dVal,
+    'LinkedInæåäººé¦é ': document.getElementById('f_LinkedInæåäººé¦é ').value.trim(),
+    'å°±è®å­¸ä½': getChecked('g_å°±è®å­¸ä½'),
+    'ç®åçæ': getToggleVal('g_ç®åçæ'),
+    'ç¾è·è·ç¨±': document.getElementById('f_ç¾è·è·ç¨±').value.trim(),
+    'æåå®ä½': document.getElementById('f_æåå®ä½').value.trim(),
+    'æå¨åå¸': document.getElementById('f_æå¨åå¸').value.trim(),
+    'æå¨åå®¶ / å°å': document.getElementById('f_æå¨åå®¶å°å').value,
+    'æå¨è¡æ¥­': industries,
+    'è½æä¾çè³æº': getChecked('g_è½æä¾çè³æº'),
+    'å¸æç²å¾çè³æº': getChecked('g_å¸æç²å¾çè³æº'),
+    'å¸æç³»ä¸æä¾': getChecked('g_å¸æç³»ä¸æä¾'),
+    'Mentor æé¡': getToggleVal('g_Mentoræé¡'),
+    'è·æ¶¯è«®è©¢æé¡': getToggleVal('g_è·æ¶¯è«®è©¢æé¡'),
+    'å¤§æç½å°æ': getToggleVal('g_å¤§æç½å°æ'),
+    'å¯åäº«ä¸»é¡': getChecked('g_å¯åäº«ä¸»é¡'),
+    'æ¯å­£è«®è©¢æé': getToggleVal('g_æ¯å­£è«®è©¢æé'),
+    'ææ©èç¢¼': document.getElementById('f_ææ©èç¢¼').value.trim(),
+    'åå¥½è¯çµ¡æ¹å¼': document.getElementById('f_åå¥½è¯çµ¡æ¹å¼').value,
+    'ææ¬ï¼å­¸å¼å¦¹è©¢å': document.getElementById('auth1').checked,
+    'ææ¬ï¼ç³»ååªå': document.getElementById('auth2').checked,
+    'ææ¬ï¼æ´»åéè«': document.getElementById('auth3').checked,
+    'ææ¬ï¼åæ¬¾è¯ç¹«': document.getElementById('auth4').checked,
+    'ææ¬ï¼å­¸è¡åä½': document.getElementById('auth5').checked,
+    'åææ´æ°æé': document.getElementById('f_åææ´æ°æé').checked,
+    'çµ¦ç³»ä¸çè©±': document.getElementById('f_çµ¦ç³»ä¸çè©±').value.trim(),
   };
 
   // Remove empty strings and empty arrays
@@ -469,18 +469,18 @@ async function submitForm() {
     if(res.ok) {
       document.querySelector('.form-wrap').innerHTML = `
         <div style="text-align:center;padding:4rem 1rem">
-          <div style="font-size:48px;margin-bottom:1rem;color:#0f6e56">✓</div>
-          <h2 style="font-size:20px;font-weight:600;margin-bottom:8px">感謝你填寫！</h2>
-          <p style="font-size:14px;color:#888780;line-height:1.7">你的資料已成功寫入系友資料庫。<br>確認信將寄至你的信箱，你隨時可以來信更新資料。</p>
+          <div style="font-size:48px;margin-bottom:1rem;color:#0f6e56">â</div>
+          <h2 style="font-size:20px;font-weight:600;margin-bottom:8px">æè¬ä½ å¡«å¯«ï¼</h2>
+          <p style="font-size:14px;color:#888780;line-height:1.7">ä½ çè³æå·²æåå¯«å¥ç³»åè³æåº«ã<br>ç¢ºèªä¿¡å°å¯è³ä½ çä¿¡ç®±ï¼ä½ é¨æå¯ä»¥ä¾ä¿¡æ´æ°è³æã</p>
         </div>`;
     } else {
       throw new Error(JSON.stringify(data));
     }
   } catch(err) {
     document.getElementById('submit-error').style.display = 'block';
-    document.getElementById('submit-error').textContent = '送出失敗，請稍後再試。' + (err.message || '');
+    document.getElementById('submit-error').textContent = 'éåºå¤±æï¼è«ç¨å¾åè©¦ã' + (err.message || '');
     btn.disabled = false;
-    btn.textContent = '送出 ✓';
+    btn.textContent = 'éåº â';
   }
 }
 </script>

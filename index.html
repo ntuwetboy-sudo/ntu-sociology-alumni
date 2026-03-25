@@ -410,7 +410,7 @@ async function submitForm() {
   btn.textContent = '送出中…';
 
   const industries = getChecked('g_所在行業');
-  if(otherCb.checked && otherInp.value.trim()) industries.push(otherInp.value.trim());
+  if(otherCb.checked) industries.push('其他');
 
   const brdParts = [];
   const bVal = document.getElementById('f_入學年份B').value.trim();
@@ -435,6 +435,7 @@ async function submitForm() {
     '所在城市': document.getElementById('f_所在城市').value.trim(),
     '所在國家／地區': document.getElementById('f_所在國家地區').value,
     '所在行業': industries,
+    '行業補充說明': otherCb.checked ? otherInp.value.trim() : '',
     '能提供的資源': getChecked('g_能提供的資源'),
     '希望獲得的資源': getChecked('g_希望獲得的資源'),
     '希望系上提供': getChecked('g_希望系上提供'),

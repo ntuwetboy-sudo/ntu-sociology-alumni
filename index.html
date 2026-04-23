@@ -5,78 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>台大社會學系 系友資料庫</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
-    background: #f5f4f0;
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 2rem 1rem;
-    color: #1a1a18;
-  }
-  .form-wrap { max-width: 660px; width: 100%; }
-  .form-header { margin-bottom: 1.5rem; }
-  .form-header h1 { font-size: 26px; font-weight: 600; margin-bottom: 6px; }
-  .form-header p { font-size: 15px; color: #888780; }
-  .step-pills { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
-  .pill { padding: 6px 16px; border-radius: 20px; font-size: 14px; border: 0.5px solid #d3d1c7; color: #888780; cursor: pointer; transition: all .15s; background: transparent; }
-  .pill.active { background: #e6f1fb; color: #185fa5; border-color: #185fa5; font-weight: 500; }
-  .pill.done { background: #eaf3de; color: #3b6d11; border-color: #3b6d11; }
-  .progress-bar { height: 3px; background: #d3d1c7; border-radius: 2px; margin-bottom: 1.5rem; }
-  .progress-fill { height: 100%; border-radius: 2px; background: #185fa5; transition: width .3s; }
-  .section-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
-  .section-title { font-size: 13px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1rem; }
-  .field-row { margin-bottom: 16px; }
-  .field-row:last-child { margin-bottom: 0; }
-  .field-label { font-size: 15px; color: #5f5e5a; margin-bottom: 6px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-  .required-dot { width: 5px; height: 5px; border-radius: 50%; background: #e24b4a; display: inline-block; flex-shrink: 0; }
-  .field-input, .field-select { width: 100%; height: 44px; padding: 0 14px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 16px; background: #f5f4f0; color: #1a1a18; outline: none; font-family: inherit; transition: border-color .15s; }
-  .field-input:focus, .field-select:focus { border-color: #185fa5; background: #fff; }
-  .field-textarea { width: 100%; padding: 12px 14px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 16px; background: #f5f4f0; color: #1a1a18; resize: vertical; outline: none; font-family: inherit; transition: border-color .15s; line-height: 1.6; }
-  .field-textarea:focus { border-color: #185fa5; background: #fff; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .checkbox-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: #1a1a18; line-height: 1.5; cursor: pointer; }
-  .checkbox-item input[type=checkbox] { width: 18px; height: 18px; accent-color: #185fa5; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
-  .badge { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; background: #faeeda; color: #854f0b; }
-  .badge-new { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; background: #eaf3de; color: #3b6d11; }
-  .hint { font-size: 14px; color: #b4b2a9; margin-top: 5px; line-height: 1.6; }
-  .toggle-group { display: flex; gap: 8px; flex-wrap: wrap; }
-  .toggle-btn { padding: 8px 18px; border-radius: 20px; font-size: 15px; border: 0.5px solid #d3d1c7; background: transparent; color: #888780; cursor: pointer; transition: all .15s; font-family: inherit; }
-  .toggle-btn.on { background: #e6f1fb; color: #185fa5; border-color: #185fa5; }
-  .toggle-btn:hover:not(.on) { background: #f1efe8; }
-  .intro-box { background: #f1efe8; border-radius: 8px; padding: 16px 18px; margin-bottom: 1rem; font-size: 15px; color: #5f5e5a; line-height: 1.8; }
-  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
-  .feature-item { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 12px 14px; }
-  .feature-title { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 3px; }
-  .feature-desc { font-size: 13px; color: #888780; line-height: 1.6; }
-  .activity-card { border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 14px 16px; margin-top: 8px; }
-  .activity-title { font-size: 15px; font-weight: 600; color: #1a1a18; margin-bottom: 5px; }
-  .activity-desc { font-size: 14px; color: #888780; line-height: 1.6; margin-bottom: 10px; }
-  .other-input-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
-  .other-input-row input[type=text] { flex: 1; height: 38px; padding: 0 12px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 15px; background: #f5f4f0; color: #1a1a18; outline: none; font-family: inherit; }
-  .brd-group { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-  .brd-field { display: flex; flex-direction: column; gap: 5px; }
-  .brd-label { font-size: 14px; color: #b4b2a9; }
-  .brd-prefix { display: flex; align-items: center; border: 0.5px solid #d3d1c7; border-radius: 8px; background: #f5f4f0; overflow: hidden; height: 44px; transition: border-color .15s; }
-  .brd-prefix:focus-within { border-color: #185fa5; background: #fff; }
-  .brd-pre { padding: 0 12px; font-size: 16px; font-weight: 600; border-right: 0.5px solid #d3d1c7; height: 100%; display: flex; align-items: center; background: #fff; flex-shrink: 0; color: #5f5e5a; }
-  .brd-input { border: none; background: transparent; padding: 0 12px; font-size: 16px; color: #1a1a18; width: 100%; outline: none; font-family: inherit; }
-  .nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; }
-  .btn { padding: 11px 26px; border-radius: 8px; font-size: 16px; cursor: pointer; border: 0.5px solid #d3d1c7; background: transparent; color: #1a1a18; transition: background .15s; font-family: inherit; }
-  .btn:hover { background: #f1efe8; }
-  .btn-primary { background: #1a1a18; color: #fff; border-color: transparent; }
-  .btn-primary:hover { opacity: .85; }
-  .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
-  .page-count { font-size: 15px; color: #b4b2a9; }
-  .page { display: none; }
-  .page.active { display: block; }
-  .error-msg { font-size: 12px; color: #e24b4a; margin-top: 4px; }
-  .submitting { text-align: center; padding: 3rem 1rem; }
-  .spinner { width: 32px; height: 32px; border: 3px solid #d3d1c7; border-top-color: #185fa5; border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 1rem; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif; background: #f5f4f0; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; color: #1a1a18; }
+.form-wrap { max-width: 660px; width: 100%; }
+.form-header { margin-bottom: 1.5rem; }
+.form-header h1 { font-size: 26px; font-weight: 600; margin-bottom: 6px; }
+.form-header p { font-size: 15px; color: #888780; }
+.step-pills { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+.pill { padding: 6px 16px; border-radius: 20px; font-size: 14px; border: 0.5px solid #d3d1c7; color: #888780; cursor: pointer; transition: all .15s; background: transparent; }
+.pill.active { background: #e6f1fb; color: #185fa5; border-color: #185fa5; font-weight: 500; }
+.pill.done { background: #eaf3de; color: #3b6d11; border-color: #3b6d11; }
+.progress-bar { height: 3px; background: #d3d1c7; border-radius: 2px; margin-bottom: 1.5rem; }
+.progress-fill { height: 100%; border-radius: 2px; background: #185fa5; transition: width .3s; }
+.section-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+.section-title { font-size: 13px; font-weight: 600; color: #888780; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1rem; }
+.field-row { margin-bottom: 16px; }
+.field-row:last-child { margin-bottom: 0; }
+.field-label { font-size: 15px; color: #5f5e5a; margin-bottom: 6px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.required-dot { width: 5px; height: 5px; border-radius: 50%; background: #e24b4a; display: inline-block; flex-shrink: 0; }
+.field-input, .field-select { width: 100%; height: 44px; padding: 0 14px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 16px; background: #f5f4f0; color: #1a1a18; outline: none; font-family: inherit; transition: border-color .15s; }
+.field-input:focus, .field-select:focus { border-color: #185fa5; background: #fff; }
+.field-textarea { width: 100%; padding: 12px 14px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 16px; background: #f5f4f0; color: #1a1a18; resize: vertical; outline: none; font-family: inherit; transition: border-color .15s; line-height: 1.6; }
+.field-textarea:focus { border-color: #185fa5; background: #fff; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.checkbox-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: #1a1a18; line-height: 1.5; cursor: pointer; }
+.checkbox-item input[type=checkbox] { width: 18px; height: 18px; accent-color: #185fa5; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+.badge { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; background: #faeeda; color: #854f0b; }
+.badge-new { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; background: #eaf3de; color: #3b6d11; }
+.hint { font-size: 14px; color: #b4b2a9; margin-top: 5px; line-height: 1.6; }
+.toggle-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.toggle-btn { padding: 8px 18px; border-radius: 20px; font-size: 15px; border: 0.5px solid #d3d1c7; background: transparent; color: #888780; cursor: pointer; transition: all .15s; font-family: inherit; }
+.toggle-btn.on { background: #e6f1fb; color: #185fa5; border-color: #185fa5; }
+.toggle-btn:hover:not(.on) { background: #f1efe8; }
+.intro-box { background: #f1efe8; border-radius: 8px; padding: 16px 18px; margin-bottom: 1rem; font-size: 15px; color: #5f5e5a; line-height: 1.8; }
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.feature-item { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 12px 14px; }
+.feature-title { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 3px; }
+.feature-desc { font-size: 13px; color: #888780; line-height: 1.6; }
+.activity-card { border: 0.5px solid #d3d1c7; border-radius: 8px; padding: 14px 16px; margin-top: 8px; }
+.activity-title { font-size: 15px; font-weight: 600; color: #1a1a18; margin-bottom: 5px; }
+.activity-desc { font-size: 14px; color: #888780; line-height: 1.6; margin-bottom: 10px; }
+.other-input-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.other-input-row input[type=text] { flex: 1; height: 38px; padding: 0 12px; border: 0.5px solid #d3d1c7; border-radius: 8px; font-size: 15px; background: #f5f4f0; color: #1a1a18; outline: none; font-family: inherit; }
+.brd-group { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.brd-field { display: flex; flex-direction: column; gap: 5px; }
+.brd-label { font-size: 14px; color: #b4b2a9; }
+.brd-prefix { display: flex; align-items: center; border: 0.5px solid #d3d1c7; border-radius: 8px; background: #f5f4f0; overflow: hidden; height: 44px; transition: border-color .15s; }
+.brd-prefix:focus-within { border-color: #185fa5; background: #fff; }
+.brd-pre { padding: 0 12px; font-size: 16px; font-weight: 600; border-right: 0.5px solid #d3d1c7; height: 100%; display: flex; align-items: center; background: #fff; flex-shrink: 0; color: #5f5e5a; }
+.brd-input { border: none; background: transparent; padding: 0 12px; font-size: 16px; color: #1a1a18; width: 100%; outline: none; font-family: inherit; }
+.nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; }
+.btn { padding: 11px 26px; border-radius: 8px; font-size: 16px; cursor: pointer; border: 0.5px solid #d3d1c7; background: transparent; color: #1a1a18; transition: background .15s; font-family: inherit; }
+.btn:hover { background: #f1efe8; }
+.btn-primary { background: #1a1a18; color: #fff; border-color: transparent; }
+.btn-primary:hover { opacity: .85; }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+.page-count { font-size: 15px; color: #b4b2a9; }
+.page { display: none; }
+.page.active { display: block; }
+.error-msg { font-size: 12px; color: #e24b4a; margin-top: 4px; }
+.submitting { text-align: center; padding: 3rem 1rem; }
+.spinner { width: 32px; height: 32px; border: 3px solid #d3d1c7; border-top-color: #185fa5; border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -85,7 +76,6 @@
     <h1>台大社會學系系友資料庫</h1>
     <p>建立系友橫向網絡與資源共享平台</p>
   </div>
-
   <div class="step-pills">
     <div class="pill active" id="pill0" onclick="goTo(0)">① 基本資訊</div>
     <div class="pill" id="pill1" onclick="goTo(1)">② 現況</div>
@@ -356,134 +346,129 @@
     </div>
   </div>
 </div>
-
 <script>
-const AIRTABLE_TOKEN = 'patxqBoO940IxKYQU.5ac222607d55a6e28e07e89cbf06f57b216c7de8660214208e2984a1c0fdfb63';
-const AIRTABLE_BASE  = 'appVQEwY545xIXN9r';
-const AIRTABLE_TABLE = 'tblOqHPLGZnfcQYVP';
+  // ⚠️ Token 已移至伺服器端，此檔案不含任何憑證
+  let cur = 0;
+  const total = 5;
 
-let cur = 0;
-const total = 5;
-
-function goTo(i) {
-  document.getElementById('page'+cur).classList.remove('active');
-  document.getElementById('page'+i).classList.add('active');
-  cur = i;
-  document.querySelectorAll('.pill').forEach((p,idx) => {
-    p.classList.remove('active','done');
-    if(idx < i) p.classList.add('done');
-    else if(idx === i) p.classList.add('active');
-  });
-  document.getElementById('prog').style.width = ((i+1)/total*100)+'%';
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-function toggleOne(btn, groupId) {
-  document.querySelectorAll('#'+groupId+' .toggle-btn').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-}
-
-function getToggleVal(groupId) {
-  const on = document.querySelector('#'+groupId+' .toggle-btn.on');
-  return on ? on.textContent.trim() : '';
-}
-
-function getChecked(groupId) {
-  return Array.from(document.querySelectorAll('#'+groupId+' input[type=checkbox]:checked')).map(cb => cb.value);
-}
-
-const otherCb = document.getElementById('other-industry-cb');
-const otherInp = document.getElementById('other-industry-input');
-otherCb.addEventListener('change', () => {
-  otherInp.style.opacity = otherCb.checked ? '1' : '0.4';
-  otherInp.style.pointerEvents = otherCb.checked ? 'auto' : 'none';
-  if(otherCb.checked) otherInp.focus();
-});
-
-async function submitForm() {
-  const name  = document.getElementById('f_姓名').value.trim();
-  const email = document.getElementById('f_電子信箱').value.trim();
-  if(!name || !email) { alert('請填寫姓名和電子信箱'); goTo(0); return; }
-
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.textContent = '送出中…';
-
-  const industries = getChecked('g_所在行業');
-  if(otherCb.checked) industries.push('其他');
-
-  const brdParts = [];
-  const bVal = document.getElementById('f_入學年份B').value.trim();
-  const rVal = document.getElementById('f_入學年份R').value.trim();
-  const dVal = document.getElementById('f_入學年份D').value.trim();
-  if(bVal) brdParts.push('B' + bVal);
-  if(rVal) brdParts.push('R' + rVal);
-  if(dVal) brdParts.push('D' + dVal);
-
-  const fields = {
-    '姓名': name,
-    'Email': email,
-    '與系所關係': getToggleVal('g_與系所關係'),
-    '入學年份 B__': bVal,
-    '入學年份 R__': rVal,
-    '入學年份 D__': dVal,
-    'LinkedIn或個人首頁': document.getElementById('f_LinkedIn或個人首頁').value.trim(),
-    '就讀學位': getChecked('g_就讀學位'),
-    '目前狀態': getToggleVal('g_目前狀態'),
-    '現職職稱': document.getElementById('f_現職職稱').value.trim(),
-    '服務單位': document.getElementById('f_服務單位').value.trim(),
-    '所在城市': document.getElementById('f_所在城市').value.trim(),
-    '所在國家／地區': document.getElementById('f_所在國家地區').value,
-    '所在行業': industries,
-    '行業補充說明': otherCb.checked ? otherInp.value.trim() : '',
-    '能提供的資源': getChecked('g_能提供的資源'),
-    '希望獲得的資源': getChecked('g_希望獲得的資源'),
-    '希望系上提供': getChecked('g_希望系上提供'),
-    'Mentor 意願': getToggleVal('g_Mentor意願'),
-    '職涯諮詢意願': getToggleVal('g_職涯諮詢意願'),
-    '大手牽小手': getToggleVal('g_大手牽小手'),
-    '可分享主題': getChecked('g_可分享主題'),
-    '每季諮詢時間': getToggleVal('g_每季諮詢時間'),
-    '手機號碼或其他聯繫方式': document.getElementById('f_手機號碼').value.trim(),
-    '偏好聯絡方式': document.getElementById('f_偏好聯絡方式').value,
-    '授權：學弟妹詢問': document.getElementById('auth1').checked,
-    '授權：系友媒合': document.getElementById('auth2').checked,
-    '授權：活動邀請': document.getElementById('auth3').checked,
-    '授權：募款聯繫': document.getElementById('auth4').checked,
-    '授權：學術合作': document.getElementById('auth5').checked,
-    '同意更新提醒': document.getElementById('f_同意更新提醒').checked,
-    '給系上的話': document.getElementById('f_給系上的話').value.trim(),
-  };
-
-  // Remove empty strings and empty arrays
-  Object.keys(fields).forEach(k => {
-    if(fields[k] === '' || (Array.isArray(fields[k]) && fields[k].length === 0)) delete fields[k];
-  });
-
-  try {
-    const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${AIRTABLE_TOKEN}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fields })
+  function goTo(i) {
+    document.getElementById('page'+cur).classList.remove('active');
+    document.getElementById('page'+i).classList.add('active');
+    cur = i;
+    document.querySelectorAll('.pill').forEach((p,idx) => {
+      p.classList.remove('active','done');
+      if(idx < i) p.classList.add('done');
+      else if(idx === i) p.classList.add('active');
     });
-    const data = await res.json();
-    if(res.ok) {
-      document.querySelector('.form-wrap').innerHTML = `
-        <div style="text-align:center;padding:4rem 1rem">
-          <div style="font-size:48px;margin-bottom:1rem;color:#0f6e56">✓</div>
-          <h2 style="font-size:20px;font-weight:600;margin-bottom:8px">感謝你填寫！</h2>
-          <p style="font-size:14px;color:#888780;line-height:1.7">你的資料已成功寫入系友資料庫。<br>確認信將寄至你的信箱，你隨時可以來信更新資料。</p>
-        </div>`;
-    } else {
-      throw new Error(JSON.stringify(data));
-    }
-  } catch(err) {
-    document.getElementById('submit-error').style.display = 'block';
-    document.getElementById('submit-error').textContent = '送出失敗，請稍後再試。' + (err.message || '');
-    btn.disabled = false;
-    btn.textContent = '送出 ✓';
+    document.getElementById('prog').style.width = ((i+1)/total*100)+'%';
+    window.scrollTo({top:0, behavior:'smooth'});
   }
-}
+
+  function toggleOne(btn, groupId) {
+    document.querySelectorAll('#'+groupId+' .toggle-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+  }
+
+  function getToggleVal(groupId) {
+    const on = document.querySelector('#'+groupId+' .toggle-btn.on');
+    return on ? on.textContent.trim() : '';
+  }
+
+  function getChecked(groupId) {
+    return Array.from(document.querySelectorAll('#'+groupId+' input[type=checkbox]:checked')).map(cb => cb.value);
+  }
+
+  const otherCb = document.getElementById('other-industry-cb');
+  const otherInp = document.getElementById('other-industry-input');
+  otherCb.addEventListener('change', () => {
+    otherInp.style.opacity = otherCb.checked ? '1' : '0.4';
+    otherInp.style.pointerEvents = otherCb.checked ? 'auto' : 'none';
+    if(otherCb.checked) otherInp.focus();
+  });
+
+  async function submitForm() {
+    const name = document.getElementById('f_姓名').value.trim();
+    const email = document.getElementById('f_電子信箱').value.trim();
+    if(!name || !email) { alert('請填寫姓名和電子信箱'); goTo(0); return; }
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = '送出中…';
+
+    const industries = getChecked('g_所在行業');
+    if(otherCb.checked) industries.push('其他');
+
+    const bVal = document.getElementById('f_入學年份B').value.trim();
+    const rVal = document.getElementById('f_入學年份R').value.trim();
+    const dVal = document.getElementById('f_入學年份D').value.trim();
+
+    const fields = {
+      '姓名': name,
+      'Email': email,
+      '與系所關係': getToggleVal('g_與系所關係'),
+      '入學年份 B__': bVal,
+      '入學年份 R__': rVal,
+      '入學年份 D__': dVal,
+      'LinkedIn或個人首頁': document.getElementById('f_LinkedIn或個人首頁').value.trim(),
+      '就讀學位': getChecked('g_就讀學位'),
+      '目前狀態': getToggleVal('g_目前狀態'),
+      '現職職稱': document.getElementById('f_現職職稱').value.trim(),
+      '服務單位': document.getElementById('f_服務單位').value.trim(),
+      '所在城市': document.getElementById('f_所在城市').value.trim(),
+      '所在國家／地區': document.getElementById('f_所在國家地區').value,
+      '所在行業': industries,
+      '行業補充說明': otherCb.checked ? otherInp.value.trim() : '',
+      '能提供的資源': getChecked('g_能提供的資源'),
+      '希望獲得的資源': getChecked('g_希望獲得的資源'),
+      '希望系上提供': getChecked('g_希望系上提供'),
+      'Mentor 意願': getToggleVal('g_Mentor意願'),
+      '職涯諮詢意願': getToggleVal('g_職涯諮詢意願'),
+      '大手牽小手': getToggleVal('g_大手牽小手'),
+      '可分享主題': getChecked('g_可分享主題'),
+      '每季諮詢時間': getToggleVal('g_每季諮詢時間'),
+      '手機號碼或其他聯繫方式': document.getElementById('f_手機號碼').value.trim(),
+      '偏好聯絡方式': document.getElementById('f_偏好聯絡方式').value,
+      '授權：學弟妹詢問': document.getElementById('auth1').checked,
+      '授權：系友媒合': document.getElementById('auth2').checked,
+      '授權：活動邀請': document.getElementById('auth3').checked,
+      '授權：募款聯繫': document.getElementById('auth4').checked,
+      '授權：學術合作': document.getElementById('auth5').checked,
+      '同意更新提醒': document.getElementById('f_同意更新提醒').checked,
+      '給系上的話': document.getElementById('f_給系上的話').value.trim(),
+    };
+
+    // 移除空值
+    Object.keys(fields).forEach(k => {
+      if(fields[k] === '' || (Array.isArray(fields[k]) && fields[k].length === 0)) delete fields[k];
+    });
+
+    try {
+      // 打自己的 Netlify Function，不再直接打 Airtable
+      const res = await fetch('/.netlify/functions/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fields })
+      });
+
+      const data = await res.json();
+
+      if(res.ok) {
+        document.querySelector('.form-wrap').innerHTML = `
+          <div style="text-align:center;padding:4rem 1rem">
+            <div style="font-size:48px;margin-bottom:1rem;color:#0f6e56">✓</div>
+            <h2 style="font-size:20px;font-weight:600;margin-bottom:8px">感謝你填寫！</h2>
+            <p style="font-size:14px;color:#888780;line-height:1.7">你的資料已成功寫入系友資料庫。<br>確認信將寄至你的信箱，你隨時可以來信更新資料。</p>
+          </div>`;
+      } else {
+        throw new Error(JSON.stringify(data));
+      }
+    } catch(err) {
+      document.getElementById('submit-error').style.display = 'block';
+      document.getElementById('submit-error').textContent = '送出失敗，請稍後再試。' + (err.message || '');
+      btn.disabled = false;
+      btn.textContent = '送出 ✓';
+    }
+  }
 </script>
 </body>
 </html>

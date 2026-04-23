@@ -444,7 +444,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC"
 
     try {
       // 打自己的 Netlify Function，不再直接打 Airtable
-      const res = await fetch('/.netlify/functions/submit', {
+      const res = await fetch('https://sparkling-sfogliatella-eca7a0.netlify.app/.netlify/functions/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fields })
